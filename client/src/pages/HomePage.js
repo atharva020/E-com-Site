@@ -42,8 +42,26 @@ const HomePage = () => {
     setChecked(all);
   };
   useEffect(() => {
-    getAllProducts();
+    if (!checked.length || radio.length) getAllProducts();
+    //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio]);
+  //get filter product
+
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post("/api/v1/product/product-filetrs", {
+        checked,
+        radio,
+      });
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout title={"all products"}>
       <div className="row">
