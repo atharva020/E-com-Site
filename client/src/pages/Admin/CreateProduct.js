@@ -131,7 +131,7 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <input
                   type="number"
                   value={price}
